@@ -1,7 +1,11 @@
+'use client'
 import React from "react";
 import SigninButton from "./SigninButton";
+import { useSession } from "next-auth/react";
 
 const Appbar = () => {
+    const { data: session } = useSession();
+
     return (
         <header className="bg-gradient-to-b from-white to-gray-200 shadow-md">
             <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -11,6 +15,9 @@ const Appbar = () => {
                     <a href="/team" className="text-gray-600 hover:text-gray-800">Our Team</a>
                     <a href="/gallery" className="text-gray-600 hover:text-gray-800">Gallery</a>
                     <a href="/blogs" className="text-gray-600 hover:text-gray-800">Blogs</a>
+                    {session && session.user && (
+                        <a href="/add-blogs" className="text-gray-600 hover:text-gray-800">Add Blogs</a>
+                    )}
                 </nav>
                 <SigninButton />
             </div>
