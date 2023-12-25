@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import toast, { Toaster } from 'react-hot-toast';
 
 const NewBlogPage = () => {
     const [title, setTitle] = useState('');
@@ -30,12 +29,9 @@ const NewBlogPage = () => {
         try {
             // Form validation
             if (!title || !content || !author || !category) {
-                toast.error('Please fill out all fields');
+                console.error('Please fill out all fields');
                 return;
             }
-
-            // Reset error message
-            toast.dismiss();
 
             // Ensure there is an active session
             if (!session) {
@@ -43,40 +39,39 @@ const NewBlogPage = () => {
                 return;
             }
 
-            // Example: Use the MongoDB client to save the new blog.
-            const response = await fetch('/api/blogs', {
+            // Use the MongoDB client to save the new blog
+            const response = await fetch('/api/post-blogs', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'use-client': true,  // Add the 'use-client' header
                 },
                 body: JSON.stringify({
                     title,
                     content,
                     author,
                     category,
-                    user: {
-                        id: session.user.id,
-                        name: session.user.name,
-                        email: session.user.email,
-                    },
+                    userId: session.user.id,
+                    userName: session.user.name,
+                    coverImage: 'https://placekitten.com/802/400', 
                 }),
             });
 
-            // Example: Check if the API call was successful.
+            // Check if the API call was successful
             if (response.ok) {
-                toast.success('Blog successfully saved!');
+                console.log('Blog successfully saved!');
                 // Optionally, you can redirect the user to the blog list page or perform any other action.
             } else {
-                toast.error('Failed to save the blog.');
+                console.error('Failed to save the blog.');
             }
         } catch (error) {
             console.error('An error occurred:', error);
-            toast.error('An error occurred. Please try again.');
+            console.error('An error occurred. Please try again.');
         }
     };
 
     return (
-        <div className="bg-green-500 min-h-screen flex flex-col justify-center items-center text-white font-sans p-4 text-black">
+        <div className="bg-green-500 min-h-screen flex flex-col justify-center items-center font-sans p-4 text-black">
             <h1 className="text-4xl font-bold mb-8 mt-0">Add New Blog</h1>
             <form className="bg-white p-8 rounded-md shadow-md w-full">
                 <div className="mb-4">
@@ -134,7 +129,6 @@ const NewBlogPage = () => {
                 >
                     Submit
                 </button>
-                <Toaster />
             </form>
         </div>
     );

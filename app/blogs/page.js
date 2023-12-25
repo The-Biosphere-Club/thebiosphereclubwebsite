@@ -1,4 +1,5 @@
-// BlogCard component
+'use client'
+import React, { useState,  useEffect } from 'react';
 const BlogCard = ({ blog }) => {
     return (
         <div className="bg-white p-6 rounded-md shadow-md transition-transform hover:scale-105">
@@ -12,7 +13,7 @@ const BlogCard = ({ blog }) => {
             <div className="mt-4 flex justify-between items-center">
                 <span className="text-sm text-gray-500">{blog.date}</span>
                 {/* Add more details or links if needed */}
-                <a href={`/blogs/${blog.id}`} className="text-blue-500 hover:underline">
+                <a href={`/blogs/${blog._id}`} className="text-blue-500 hover:underline">
                     Read more
                 </a>
             </div>
@@ -74,15 +75,33 @@ const dummyBlogs = [
 ];
 
 const NatureBlogsPage = () => {
-    // Use dummyBlogs for testing
-    const blogs = dummyBlogs;
+    const [blogs, setBlogs] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/get-blogs', { method: 'GET' });
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data);
+                    setBlogs(data);
+                } else {
+                    console.error('Failed to fetch blogs:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
-        <div className="bg-green-500 h-full flex flex-col justify-start items-center text-white font-sans px-4 py-6">
+        <div className="bg-green-500 h-screen flex flex-col justify-start items-center text-white font-sans px-4 py-6">
             <h1 className="text-4xl font-bold mb-8 mt-0">Nature Blogs</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {blogs.map((blog) => (
-                    <BlogCard key={blog.id} blog={blog} />
+                    <BlogCard key={blog._id} blog={blog} />
                 ))}
             </div>
         </div>
