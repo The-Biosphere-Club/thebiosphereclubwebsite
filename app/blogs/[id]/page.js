@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const BlogPage = ({ params }) => {
     const [blog, setBlog] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -16,6 +17,8 @@ const BlogPage = ({ params }) => {
                 }
             } catch (error) {
                 console.error('Error fetching blog:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -23,24 +26,27 @@ const BlogPage = ({ params }) => {
     }, [params.id]);
 
     return (
-        <div className="max-w-2xl mx-auto mt-8 p-4 bg-white rounded-md shadow-md">
-            {blog ? (
-                <>
-                    <img src={blog.coverImage} alt={blog.title} className="w-full h-64 object-cover mb-4 rounded-md" />
-                    <h1 className="text-4xl font-bold mb-4 text-black">{blog.title}</h1>
-                    <p className="text-gray-600 mb-4">{blog.content}</p>
-                    <div className="flex items-center justify-between mb-4">
-                        <p className="text-gray-500">Author: {blog.author}</p>
-                        <p className="text-gray-500">Category: {blog.category}</p>
-                        <p className="text-gray-500">Date: {new Date(blog.date).toLocaleDateString()}</p>
-                    </div>
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
+        <div className="bg-green-200 h-full flex flex-col justify-start items-center text-black font-sans px-4 py-6">
+            <div className="max-w-2xl mx-auto mt-8 p-4 bg-white rounded-md shadow-md">
+                {loading ? (
+                    <p className="text-gray-500">Loading...</p>
+                ) : blog ? (
+                    <>
+                        <img src={blog.coverImage} alt={blog.title} className="w-full h-64 object-cover mb-4 rounded-md" />
+                        <h1 className="text-4xl font-bold mb-4 text-black">{blog.title}</h1>
+                        <p className="text-gray-600 mb-4">{blog.content}</p>
+                        <div className="flex items-center justify-between mb-4">
+                            <p className="text-gray-500">Author: {blog.author}</p>
+                            <p className="text-gray-500">Category: {blog.category}</p>
+                            <p className="text-gray-500">Date: {new Date(blog.date).toLocaleDateString()}</p>
+                        </div>
+                    </>
+                ) : (
+                    <p className="text-red-500">Failed to load blog. Please try again later.</p>
+                )}
+            </div>
         </div>
     );
 };
 
 export default BlogPage;
-

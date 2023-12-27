@@ -59,9 +59,11 @@ const NewBlogPage = () => {
 
             // Check if the API call was successful
             if (response.ok) {
+                window.alert('Blog successfully saved!');
                 console.log('Blog successfully saved!');
                 // Optionally, you can redirect the user to the blog list page or perform any other action.
             } else {
+                window.alert('Failed to save the blog.');
                 console.error('Failed to save the blog.');
             }
         } catch (error) {
