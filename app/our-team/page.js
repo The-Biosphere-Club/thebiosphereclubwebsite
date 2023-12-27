@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Arya from '../../assets/team/Arya.jpg';
 import Ashima from '../../assets/team/Ashima.jpg';
@@ -35,64 +36,83 @@ const teamMembers = [
 ];
 
 const Gallery = () => {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate a delay for demonstration purposes (you can replace this with your actual data fetching logic)
+        const fetchData = () => {
+            setTimeout(() => {
+                setLoading(false);
+            }, 2000);
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <div className="bg-green-200 text-center">
             <h1 className="text-4xl font-bold mb-8 pt-2 text-black">Our Team</h1>
-            <h3 className="text-3xl font-bold mb-8 mt-0 text-black">Founders</h3>
-            <div className="flex flex-wrap justify-evenly">
-                {teamMembers.slice(0, 2).map((member, index) => (
-                    <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
-                        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <a href="#">
-                                <Image className="rounded-t-lg w-full h-90 object-cover" src={member.image} alt={`${member.name}'s Photo`} />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{member.name}</h5>
-                                </a>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{member.description}</p>
+            {loading ? (
+                <div className="loader">Loading...</div>
+            ) : (
+                <>
+                    <h3 className="text-3xl font-bold mb-8 mt-0 text-black">Founders</h3>
+                    <div className="flex flex-wrap justify-evenly">
+                        {teamMembers.slice(0, 2).map((member, index) => (
+                            <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2">
+                                <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                    <a>
+                                        <Image className="rounded-t-lg w-full h-90 object-cover" src={member.image} alt={`${member.name}'s Photo`} />
+                                    </a>
+                                    <div className="p-5">
+                                        <a>
+                                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{member.name}</h5>
+                                        </a>
+                                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{member.description}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            <br />
-            <h3 className="text-3xl font-bold mb-8 mt-0 text-black">Core</h3>
-            <div className="flex flex-wrap justify-evenly">
-                {teamMembers.slice(2, 5).map((member, index) => (
-                    <div key={index} className="w-full sm:w-1/3 md:w-1/3 lg:w-1/4 p-2">
-                        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <a href="#">
-                                <Image className="rounded-t-lg w-full h-90 object-cover" src={member.image} alt={`${member.name}'s Photo`} />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{member.name}</h5>
-                                </a>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{member.description}</p>
+                    <br />
+                    <h3 className="text-3xl font-bold mb-8 mt-0 text-black">Core</h3>
+                    <div className="flex flex-wrap justify-evenly">
+                        {teamMembers.slice(2, 5).map((member, index) => (
+                            <div key={index} className="w-full sm:w-1/3 md:w-1/3 lg:w-1/4 p-2">
+                                <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                    <a>
+                                        <Image className="rounded-t-lg w-full h-90 object-cover" src={member.image} alt={`${member.name}'s Photo`} />
+                                    </a>
+                                    <div className="p-5">
+                                        <a>
+                                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{member.name}</h5>
+                                        </a>
+                                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{member.description}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
-            </div>
-            <br />
-            <div className="flex flex-wrap justify-evenly">
-                {teamMembers.slice(5).map((member, index) => (
-                    <div key={index} className="w-full sm:w-1/3 md:w-1/3 lg:w-1/4 p-2">
-                        <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <a href="#">
-                                <Image className="rounded-t-lg w-full h-90 object-cover" src={member.image} alt={`${member.name}'s Photo`} />
-                            </a>
-                            <div className="p-5">
-                                <a href="#">
-                                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{member.name}</h5>
-                                </a>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{member.description}</p>
+                    <br />
+                    <div className="flex flex-wrap justify-evenly">
+                        {teamMembers.slice(5).map((member, index) => (
+                            <div key={index} className="w-full sm:w-1/3 md:w-1/3 lg:w-1/4 p-2">
+                                <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                    <a>
+                                        <Image className="rounded-t-lg w-full h-90 object-cover" src={member.image} alt={`${member.name}'s Photo`} />
+                                    </a>
+                                    <div className="p-5">
+                                        <a>
+                                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{member.name}</h5>
+                                        </a>
+                                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{member.description}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
-            </div>
+                </>
+            )}
         </div>
     );
 };
