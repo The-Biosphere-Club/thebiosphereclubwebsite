@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import { Card, Skeleton } from "@nextui-org/react";
 import Image from 'next/image';
 import Arya from '../../assets/team/Arya.jpg';
 import Ashima from '../../assets/team/Ashima.jpg';
@@ -39,7 +40,6 @@ const Gallery = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Simulate a delay for demonstration purposes (you can replace this with your actual data fetching logic)
         const fetchData = () => {
             setTimeout(() => {
                 setLoading(false);
@@ -53,7 +53,30 @@ const Gallery = () => {
         <div className="bg-green-200 text-center">
             <h1 className="text-4xl font-bold mb-8 pt-2 text-black">Our Team</h1>
             {loading ? (
-                <div className="loader">Loading...</div>
+                <>
+                    <div className="flex flex-wrap justify-center gap-6">
+                        {teamMembers.map((member, index) => (
+                            <div key={index} className="w-[250px] mx-2 my-4 p-4">
+                                <Card className="w-[250px] h-[300px] space-y-5 p-4" radius="lg">
+                                    <Skeleton className="rounded-lg">
+                                        <div className="h-24 rounded-lg bg-default-300"></div>
+                                    </Skeleton>
+                                    <div className="space-y-3">
+                                        <Skeleton className="w-3/5 rounded-lg">
+                                            <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
+                                        </Skeleton>
+                                        <Skeleton className="w-4/5 rounded-lg">
+                                            <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
+                                        </Skeleton>
+                                        <Skeleton className="w-2/5 rounded-lg">
+                                            <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                                        </Skeleton>
+                                    </div>
+                                </Card>
+                            </div>
+                        ))}
+                    </div>
+                </>
             ) : (
                 <>
                     <h3 className="text-3xl font-bold mb-8 mt-0 text-black">Founders</h3>
