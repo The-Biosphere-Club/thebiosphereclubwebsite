@@ -51,7 +51,7 @@ const Gallery = () => {
 
     return (
         <div className="bg-green-200 text-center">
-            <h1 className="text-4xl font-bold mb-8 pt-2 text-black">Our Team</h1>
+            <h1 className="text-4xl font-bold mb-8 pt-6 text-black">Our Team</h1>
             {loading ? (
                 <>
                     <div className="flex flex-wrap justify-center gap-6">
