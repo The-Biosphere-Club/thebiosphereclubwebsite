@@ -28,7 +28,7 @@ const teamMembers = [
     { name: 'Devadharshini', image: Devadharshini, description: 'Design Lead' },
     { name: 'Manish', image: Manish, description: 'Management Lead' },
     { name: 'Ojas', image: Ojas, description: 'Tech Lead' },
-    { name: 'Sai_Prasad', image: Sai_Prasad, description: 'Content Lead' },
+    { name: 'Sai Prasad', image: Sai_Prasad, description: 'Content Lead' },
     { name: 'Shiv', image: Shiv, description: 'Creative & Media Lead' },
     { name: 'Shruti', image: Shruti, description: 'Management Lead' },
     { name: 'Varun', image: Varun, description: 'Content Lead' },
