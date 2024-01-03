@@ -29,17 +29,29 @@ const BlogPage = ({ params }) => {
         <div className="bg-green-200 h-full flex flex-col justify-start items-center text-black font-sans px-4 py-6">
             <div className="max-w-2xl mx-auto mt-8 p-4 bg-white rounded-md shadow-md">
                 {loading ? (
-                    <p className="text-gray-500">Loading...</p>
+                    <>
+                        <div className="bg-green-200 h-screen flex flex-col justify-start items-center text-black font-sans px-4 py-6">
+                            <div className="max-w-2xl mx-auto mt-8 p-4 bg-white rounded-md shadow-md">
+                                <h1 className="text-4xl font-bold mb-4 text-black">Loading the blog title</h1>
+                                <p className="text-gray-600 mb-4">Loading the blog content</p>
+                                <div className="flex items-center justify-between mb-4">
+                                    <p className="text-gray-500">Author: Loading the author</p>
+                                    <p className="text-gray-500">Category: Loading the category</p>
+                                    <p className="text-gray-500">Date: Loading the date</p>
+                                </div>
+                            </div>
+                        </div>
+                    </>
                 ) : blog ? (
                     <>
-                        <img src={blog.coverImage} alt={blog.title} className="w-full h-64 object-cover mb-4 rounded-md" />
-                        <h1 className="text-4xl font-bold mb-4 text-black">{blog.title}</h1>
-                        <p className="text-gray-600 mb-4">{blog.content}</p>
-                        <div className="flex items-center justify-between mb-4">
-                            <p className="text-gray-500">Author: {blog.author}</p>
-                            <p className="text-gray-500">Category: {blog.category}</p>
-                            <p className="text-gray-500">Date: {new Date(blog.date).toLocaleDateString()}</p>
-                        </div>
+                            <img src={blog.coverImage} alt={blog.title} className="w-full h-64 object-cover mb-4 rounded-md" />
+                            <h1 className="text-4xl font-bold mb-4 text-black">{blog.title}</h1>
+                            <p className="text-gray-600 mb-4">{blog.content}</p>
+                            <div className="flex items-center justify-between mb-4">
+                                <p className="text-gray-500">Author: {blog.author}</p>
+                                <p className="text-gray-500">Category: {blog.category}</p>
+                                <p className="text-gray-500">Date: {new Date(blog.date).toLocaleDateString()}</p>
+                            </div>
                     </>
                 ) : (
                     <p className="text-red-500">Failed to load blog. Please try again later.</p>
