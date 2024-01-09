@@ -73,9 +73,9 @@ const NewBlogPage = () => {
     };
 
     return (
-        <div className="bg-green-500 min-h-screen flex flex-col justify-center items-center font-sans p-4 text-black">
+        <div className="bg-green-200 min-h-screen flex flex-col justify-center items-center font-sans p-4 text-black">
             <h1 className="text-4xl font-bold mb-8 mt-0">Add New Blog</h1>
-            <form className="bg-white p-8 rounded-md shadow-md w-full">
+            <form className="bg-white p-8 rounded-md shadow-md w-[50%]">
                 <div className="mb-4">
                     <label htmlFor="title" className="block text-sm font-medium text-gray-600">
                         Title:
@@ -127,7 +127,7 @@ const NewBlogPage = () => {
                 <button
                     type="button"
                     onClick={handleSubmit}
-                    className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600"
+                    className="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300"
                 >
                     Submit
                 </button>

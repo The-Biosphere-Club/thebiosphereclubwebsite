@@ -30,12 +30,11 @@ const Card = ({ title, description, imageUrl }) => {
           />
         </div>
         <div className="p-8">
-          <a
-            href="#"
-            className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+          <p
+            className="block mt-1 text-lg leading-tight font-medium text-black"
           >
             {title}
-          </a>
+          </p>
           <p className="mt-2 text-gray-500">{description}</p>
         </div>
       </div>
@@ -114,7 +113,8 @@ const CardList = () => {
   ];
 
   return (
-    <div className="bg-green-200 py-5 h-full">
+    <div className="bg-green-200 py-5 h-full text-center">
+      <h1 className="text-4xl font-bold mb-8 pt-6 text-black">Events Gallery</h1>
       <div className="flex flex-col items-center">
         {cardData.map((card, index) => (
           <Card key={index} {...card} />

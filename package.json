@@ -9,9 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
     "@fontsource/raleway": "^5.0.16",
+    "@material-ui/core": "^4.12.4",
+    "@mui/material-nextjs": "^5.15.3",
     "@next-auth/mongodb-adapter": "^1.1.3",
     "@nextui-org/react": "^2.2.9",
+    "draft-js": "^0.11.7",
+    "flowbite-react": "^0.7.2",
     "framer-motion": "^10.16.16",
     "fslightbox-react": "^1.7.6",
     "mongodb": "^5.9.2",
@@ -21,6 +26,7 @@
     "nodemailer": "^6.9.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-draft-wysiwyg": "^1.15.0",
     "react-helmet": "^6.1.0",
     "react-hot-toast": "^2.4.1",
     "react-responsive-carousel": "^3.2.23",
